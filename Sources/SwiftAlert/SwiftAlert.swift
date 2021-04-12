@@ -2,7 +2,7 @@ import UIKit
 
 public class Alert {
     
-    static func alert(title: String?, message: String?, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)]){
+    public static func alert(title: String?, message: String?, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)]){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
@@ -24,7 +24,7 @@ public class Alert {
 
 extension UIApplication{
 
-    class func currentViewController() -> UIViewController? {
+    public class func currentViewController() -> UIViewController? {
 
         var presentViewController = UIApplication.shared.keyWindow?.rootViewController
 
