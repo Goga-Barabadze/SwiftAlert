@@ -1,3 +1,3 @@
 # SwiftAlert
 
-A description of this package.
+Simplifies the use of Alerts in Swift
