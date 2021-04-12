@@ -1,6 +1,6 @@
 import UIKit
 
-class Alert {
+public class Alert {
     
     static func alert(title: String?, message: String?, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)]){
         
