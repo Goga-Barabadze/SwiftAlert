@@ -2,7 +2,7 @@ import UIKit
 
 public class Alert {
     
-    public static func alert(title: String?, message: String?, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)]){
+    public static func alert(title: String?, message: String?, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)]/*, textFields: [UITextField]? = []*/){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
@@ -15,6 +15,14 @@ public class Alert {
         for action in actions {
             alert.addAction(action)
         }
+        
+//        for textField in textFields {
+//            alert.addTextField(configurationHandler: <#T##((UITextField) -> Void)?##((UITextField) -> Void)?##(UITextField) -> Void#>)
+//        }
+//
+//        alert.addTextField { (textField) in
+//            textField.text = "Some default text"
+//        }
         
         target.present(alert, animated: true, completion: nil)
         
