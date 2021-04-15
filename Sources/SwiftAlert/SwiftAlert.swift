@@ -6,7 +6,7 @@ public class Alert {
         
         var style = preferredStyle
         
-        if style == .actionSheet && textFields.isEmpty {
+        if style == .actionSheet && !textFields.isEmpty {
             style = .alert
         }
         
