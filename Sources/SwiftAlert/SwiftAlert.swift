@@ -2,9 +2,9 @@ import UIKit
 
 public class Alert {
     
-    public static func alert(title: String? = nil, message: String? = nil, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], textFields: [((UITextField) -> Void)?]? = []){
+    public static func alert(title: String? = nil, message: String? = nil, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], textFields: [((UITextField) -> Void)?]? = [], preferredStyle: UIAlertController.Style = .actionSheet){
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         
         if let popoverController = alert.popoverPresentationController {
             popoverController.sourceView = target.view
