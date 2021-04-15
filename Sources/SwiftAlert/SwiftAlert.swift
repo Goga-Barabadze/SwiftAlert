@@ -2,9 +2,15 @@ import UIKit
 
 public class Alert {
     
-    public static func alert(title: String? = nil, message: String? = nil, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], textFields: [((UITextField) -> Void)?]? = [], preferredStyle: UIAlertController.Style = .actionSheet){
+    public static func alert(title: String? = nil, message: String? = nil, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], textFields: [((UITextField) -> Void)?] = [], preferredStyle: UIAlertController.Style = .actionSheet){
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        var style = preferredStyle
+        
+        if style == .actionSheet && textFields.isEmpty {
+            style = .alert
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         
         if let popoverController = alert.popoverPresentationController {
             popoverController.sourceView = target.view
@@ -16,10 +22,8 @@ public class Alert {
             alert.addAction(action)
         }
         
-        if let textFields = textFields {
-            for textField in textFields {
-                alert.addTextField(configurationHandler: textField)
-            }
+        for textField in textFields {
+            alert.addTextField(configurationHandler: textField)
         }
         
         target.present(alert, animated: true, completion: nil)
