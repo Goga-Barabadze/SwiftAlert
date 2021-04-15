@@ -2,7 +2,9 @@ import UIKit
 
 public class Alert {
     
-    public static func alert(title: String? = nil, message: String? = nil, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], textFields: [((UITextField) -> Void)?] = [], preferredStyle: UIAlertController.Style = .actionSheet){
+    public static var alertControllers = [String : UIAlertController]()
+    
+    public static func alert(title: String? = nil, message: String? = nil, target: UIViewController = UIApplication.currentViewController()!, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], textFields: [((UITextField) -> Void)?] = [], alertControllerIdentifier: String = "alert",  preferredStyle: UIAlertController.Style = .actionSheet){
         
         var style = preferredStyle
         
@@ -10,23 +12,24 @@ public class Alert {
             style = .alert
         }
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        alertControllers[alertControllerIdentifier] = alertController
         
-        if let popoverController = alert.popoverPresentationController {
+        if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = target.view
             popoverController.sourceRect = CGRect(x: target.view.bounds.midX, y: target.view.bounds.midY, width: 0, height: 0)
             popoverController.permittedArrowDirections = []
         }
         
         for action in actions {
-            alert.addAction(action)
+            alertController.addAction(action)
         }
         
         for textField in textFields {
-            alert.addTextField(configurationHandler: textField)
+            alertController.addTextField(configurationHandler: textField)
         }
         
-        target.present(alert, animated: true, completion: nil)
+        target.present(alertController, animated: true, completion: nil)
         
     }
     
